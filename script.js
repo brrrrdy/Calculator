@@ -1,20 +1,19 @@
 const screen = document.getElementById('screen');
+
+// Variables (inputs)
+
 let input = '';
 let firstOperand = null;
 let secondOperand = null;
 let operator = null;
 
-const roundTo7 = function(num) {
-  return Math.round(num * 1e7) / 1e7;
-};
-
-const add = function(a, b) {
-  return roundTo7(a + b);
-};
+// Update the screen (text box containing the calculation)
 
 const updateScreen = function() {
   screen.value = `${firstOperand !== null ? firstOperand : ''} ${operator !== null ? operator : ''} ${input}`;
 };
+
+// button with listener for digits
 
 document.querySelectorAll('.digit').forEach(button => {
   button.addEventListener('click', () => {
@@ -22,6 +21,8 @@ document.querySelectorAll('.digit').forEach(button => {
     updateScreen();
   });
 });
+
+// button with listener for different operators
 
 document.querySelectorAll('.operator').forEach(button => {
   button.addEventListener('click', () => {
@@ -38,6 +39,8 @@ document.querySelectorAll('.operator').forEach(button => {
   });
 });
 
+// button with listener for '=' (can I incorporate this into the operators function?)
+
 document.getElementById('equals').addEventListener('click', () => {
   if (input === '' || firstOperand === null || !operator) return;
   secondOperand = parseFloat(input);
@@ -49,6 +52,8 @@ document.getElementById('equals').addEventListener('click', () => {
   operator = null;
 });
 
+// button with listener for 'clear'. as above.
+
 document.getElementById('clear').addEventListener('click', () => {
   input = '';
   operator = null;
@@ -56,6 +61,18 @@ document.getElementById('clear').addEventListener('click', () => {
   secondOperand = null;
   screen.value = '';
 });
+
+// rounds every result to seven decimals 
+
+const roundTo7 = function(num) {
+  return Math.round(num * 1e7) / 1e7;
+};
+
+// basic functionality for various calculations 
+
+const add = function(a, b) {
+  return roundTo7(a + b);
+};
 
 const subtract = function(a, b) {
 	return a - b;
