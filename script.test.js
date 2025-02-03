@@ -1,5 +1,7 @@
 const script = require('./script');
 
+// addition
+
 describe('add', () => {
   test('adds 0 and 0', () => {
     expect(script.add(0, 0)).toBe(0);
@@ -14,6 +16,8 @@ describe('add', () => {
   });
 });
 
+// subtract
+
 describe('subtract', () => {
     test('subtracts numbers', () => {
       expect(script.subtract(10, 4)).toBe(6);
@@ -27,6 +31,8 @@ describe('subtract', () => {
       expect(script.subtract(-8, 7)).toBe(-15);
     });
   });
+
+// sum
   
   describe('sum', () => {
     test('computes the sum of an empty array', () => {
@@ -46,6 +52,8 @@ describe('subtract', () => {
     });
   });
   
+// multiply
+
   describe('multiply', () => {
     test('multiplies two numbers', () => {
       expect(script.multiply([2, 4])).toBe(8);
@@ -55,6 +63,20 @@ describe('subtract', () => {
       expect(script.multiply([2, 4, 6, 8, 10, 12, 14])).toBe(645120);
     });
   });
+
+// divide
+
+  describe('divide', () => {
+    test('divides two numbers', () => {
+      expect(script.divide([10, 2])).toBe(5);
+    });
+
+  describe('divide several numbers', () => {
+    expect(script.divide([20, 3, 4])).toBe(1.6666667);
+    });
+  });
+   
+// power
   
   describe('power', () => {
     test('raises one number to the power of another number', () => {
@@ -65,6 +87,8 @@ describe('subtract', () => {
       expect(script.power(3, 10)).toBe(59049); // 3 to tenth power is 59049
     });
   });
+
+// factorial
   
   describe('factorial', () => {
     test('computes the factorial of 0', () => {

@@ -1,3 +1,7 @@
+const roundTo7 = function(array) {
+  return Math.round(array*1e7) / 1e7;
+}
+
 const add = function(a, b) {
 	return a + b;
 };
@@ -14,6 +18,9 @@ const multiply = function(array) {
   return array.reduce((a, b) => a * b)
 };
 
+const divide = function(array) {
+  return roundTo7(array.reduce((a, b) => a / b));
+};
 
 const power = function(a, b) {
 	return Math.pow(a, b);
@@ -30,12 +37,14 @@ else {
 };
 
 module.exports = {
+    roundTo7,
     add,
     subtract,
     sum,
     multiply,
+    divide,
     power,
-    factorial
+    factorial,
   };
 
 
