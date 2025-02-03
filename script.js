@@ -1,10 +1,61 @@
-const roundTo7 = function(array) {
-  return Math.round(array*1e7) / 1e7;
-}
+const screen = document.getElementById('screen');
+let input = '';
+let firstOperand = null;
+let secondOperand = null;
+let operator = null;
+
+const roundTo7 = function(num) {
+  return Math.round(num * 1e7) / 1e7;
+};
 
 const add = function(a, b) {
-	return a + b;
+  return roundTo7(a + b);
 };
+
+const updateScreen = function() {
+  screen.value = `${firstOperand !== null ? firstOperand : ''} ${operator !== null ? operator : ''} ${input}`;
+};
+
+document.querySelectorAll('.digit').forEach(button => {
+  button.addEventListener('click', () => {
+    input += button.textContent;
+    updateScreen();
+  });
+});
+
+document.querySelectorAll('.operator').forEach(button => {
+  button.addEventListener('click', () => {
+    if (input === '') return;
+    if (firstOperand === null) {
+      firstOperand = parseFloat(input);
+    } else if (operator) {
+      secondOperand = parseFloat(input);
+      firstOperand = add(firstOperand, secondOperand);
+    }
+    operator = button.textContent;
+    input = '';
+    updateScreen();
+  });
+});
+
+document.getElementById('equals').addEventListener('click', () => {
+  if (input === '' || firstOperand === null || !operator) return;
+  secondOperand = parseFloat(input);
+  const result = add(firstOperand, secondOperand);
+  screen.value = `${firstOperand} ${operator} ${secondOperand} = ${result}`;
+  input = '';
+  firstOperand = null;
+  secondOperand = null;
+  operator = null;
+});
+
+document.getElementById('clear').addEventListener('click', () => {
+  input = '';
+  operator = null;
+  firstOperand = null;
+  secondOperand = null;
+  screen.value = '';
+});
 
 const subtract = function(a, b) {
 	return a - b;
@@ -46,6 +97,12 @@ module.exports = {
     power,
     factorial,
   };
+
+// MY NOTES
+
+// - Functions all work standalone in jest. ✅
+// - Create basic css and html structure. ✅
+// - when 1, plus +, then 2, then = are pressed, it completes the calculation and shows it on the screen
 
 
 //   Your calculator is going to contain functions for all of the basic math operators you typically find on calculators, so start by creating functions for the following items and testing them in your browser’s console:
