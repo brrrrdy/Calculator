@@ -31,7 +31,15 @@ document.querySelectorAll('.operator').forEach(button => {
       firstOperand = parseFloat(input);
     } else if (operator) {
       secondOperand = parseFloat(input);
-      firstOperand = add(firstOperand, secondOperand);
+      if (operator === '+') {
+        firstOperand = add(firstOperand, secondOperand);
+      } else if (operator === '-') {
+        firstOperand = subtract(firstOperand, secondOperand);
+      } else if (operator === 'x') {
+        firstOperand = multiply(firstOperand, secondOperand);
+      } else if (operator === '/') {
+        firstOperand = divide(firstOperand, secondOperand);
+      }
     }
     operator = button.textContent;
     input = '';
@@ -39,20 +47,25 @@ document.querySelectorAll('.operator').forEach(button => {
   });
 });
 
-// button with listener for '=' (can I incorporate this into the operators function?)
-
 document.getElementById('equals').addEventListener('click', () => {
   if (input === '' || firstOperand === null || !operator) return;
   secondOperand = parseFloat(input);
-  const result = add(firstOperand, secondOperand);
+  let result;
+  if (operator === '+') {
+    result = add(firstOperand, secondOperand);
+  } else if (operator === '-') {
+    result = subtract(firstOperand, secondOperand);
+  } else if (operator === 'x') {
+    result = multiply(firstOperand, secondOperand);
+  } else if (operator === '/') {
+    result = divide(firstOperand, secondOperand);
+  }
   screen.value = `${firstOperand} ${operator} ${secondOperand} = ${result}`;
   input = '';
   firstOperand = null;
   secondOperand = null;
   operator = null;
 });
-
-// button with listener for 'clear'. as above.
 
 document.getElementById('clear').addEventListener('click', () => {
   input = '';
@@ -62,64 +75,39 @@ document.getElementById('clear').addEventListener('click', () => {
   screen.value = '';
 });
 
-// rounds every result to seven decimals 
-
 const roundTo7 = function(num) {
   return Math.round(num * 1e7) / 1e7;
 };
-
-// basic functionality for various calculations 
 
 const add = function(a, b) {
   return roundTo7(a + b);
 };
 
 const subtract = function(a, b) {
-	return a - b;
+  return roundTo7(a - b);
 };
 
-const sum = function(array) {
-  return array.reduce((a, b) => a + b, 0);
+const multiply = function(a, b) {
+  return roundTo7(a * b);
 };
 
-const multiply = function(array) {
-  return array.reduce((a, b) => a * b)
-};
-
-const divide = function(array) {
-  return roundTo7(array.reduce((a, b) => a / b));
-};
-
-const power = function(a, b) {
-	return Math.pow(a, b);
-};
-
-const factorial = function(a) {
-  if (a < 0) 
-    return -1;
-else if (a == 0) 
-  return 1;
-else {
-  return (a * factorial(a - 1));
-}
+const divide = function(a, b) {
+  return roundTo7(a / b);
 };
 
 module.exports = {
-    roundTo7,
-    add,
-    subtract,
-    sum,
-    multiply,
-    divide,
-    power,
-    factorial,
-  };
+  add,
+  subtract,
+  multiply,
+  divide
+};
 
 // MY NOTES
 
 // - Functions all work standalone in jest. ✅
 // - Create basic css and html structure. ✅
-// - when 1, plus +, then 2, then = are pressed, it completes the calculation and shows it on the screen
+// - when 1, plus +, then 2, then = are pressed, it completes the calculation and shows it on the screen (expected result 3) ✅
+// when 5, plus -, then 2, then = are pressed, it completes the calculation and shows it on the screen (expected result 3)
 
 
 //   Your calculator is going to contain functions for all of the basic math operators you typically find on calculators, so start by creating functions for the following items and testing them in your browser’s console:
