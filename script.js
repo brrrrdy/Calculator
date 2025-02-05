@@ -1,19 +1,24 @@
+// screen is the text box containing the calculation
+
 const screen = document.getElementById('screen');
 
-// Variables (inputs)
+// Variables (inputs) are declared and set to null because they are empty
 
 let input = '';
 let firstOperand = null;
 let secondOperand = null;
 let operator = null;
+let result = null;
 
-// Update the screen (text box containing the calculation)
+// Update the screen (text box containing the calculation) with the inputs
+// updateScreen is a function that updates the screen with the inputs
 
 const updateScreen = function() {
   screen.value = `${firstOperand !== null ? firstOperand : ''} ${operator !== null ? operator : ''} ${input}`;
 };
 
-// button with listener for digits
+// button with listener for digits 0-9
+// when digit is clicked, it is added to the input and the screen is updated
 
 document.querySelectorAll('.digit').forEach(button => {
   button.addEventListener('click', () => {
@@ -22,58 +27,72 @@ document.querySelectorAll('.digit').forEach(button => {
   });
 });
 
-// button with listener for different operators
+// button with listener for different operators (+, -, x, /)
+
 
 document.querySelectorAll('.operator').forEach(button => {
   button.addEventListener('click', () => {
-    if (input === '') return;
-    if (firstOperand === null) {
-      firstOperand = parseFloat(input);
-    } else if (operator) {
-      secondOperand = parseFloat(input);
-      if (operator === '+') {
-        firstOperand = add(firstOperand, secondOperand);
-      } else if (operator === '-') {
-        firstOperand = subtract(firstOperand, secondOperand);
-      } else if (operator === 'x') {
-        firstOperand = multiply(firstOperand, secondOperand);
-      } else if (operator === '/') {
-        firstOperand = divide(firstOperand, secondOperand);
+    if (input === '' && result !== null) { // if input is empty and result is not empty
+      firstOperand = result; // then firstOperand is set to result
+    } else if (input === '') { // if input is empty
+      return;  // then return the function
+    } else if (firstOperand === null) { // if firstOperand is empty
+      firstOperand = parseFloat(input); // then firstOperand is set to the input
+    } else if (operator) { // if operator is not empty
+      secondOperand = parseFloat(input); // then secondOperand is set to the input
+      if (operator === '+') { // if operator is +
+        firstOperand = add(firstOperand, secondOperand); // then firstOperand is set to the result of the add function
+      } else if (operator === '-') { // if operator is -
+        firstOperand = subtract(firstOperand, secondOperand); // then firstOperand is set to the result of the subtract function
+      } else if (operator === 'x') { // if operator is x
+        firstOperand = multiply(firstOperand, secondOperand); // then firstOperand is set to the result of the multiply function
+      } else if (operator === '/') { // if operator is /
+        firstOperand = divide(firstOperand, secondOperand); // then firstOperand is set to result
       }
     }
-    operator = button.textContent;
-    input = '';
-    updateScreen();
+    operator = button.textContent; // operator is set to the button text content
+    input = ''; // input is set to empty
+    updateScreen(); // run the updateScreen function
   });
 });
 
-document.getElementById('equals').addEventListener('click', () => {
-  if (input === '' || firstOperand === null || !operator) return;
-  secondOperand = parseFloat(input);
-  let result;
-  if (operator === '+') {
-    result = add(firstOperand, secondOperand);
-  } else if (operator === '-') {
-    result = subtract(firstOperand, secondOperand);
-  } else if (operator === 'x') {
-    result = multiply(firstOperand, secondOperand);
-  } else if (operator === '/') {
-    result = divide(firstOperand, secondOperand);
+// button with listener for equals 
+
+document.getElementById('equals').addEventListener('click', () => { // when equals button is clicked
+  if (input === '' || firstOperand === null || !operator) return; // if input is empty or firstOperand is empty or operator is empty, then return the function
+  secondOperand = parseFloat(input); // secondOperand is set to the input
+  if (operator === '+') { // if operator is +
+    result = add(firstOperand, secondOperand); // result is set to the result of the add function
+  } else if (operator === '-') { // if operator is -
+    result = subtract(firstOperand, secondOperand); // result is set to the result of the subtract function
+  } else if (operator === 'x') { // if operator is x
+    result = multiply(firstOperand, secondOperand); //  result is set to the result of the multiply function
+  } else if (operator === '/') { // if operator is / and
+    if (secondOperand === 0) { // if secondOperand is 0
+      screen.value = 'PETER, YOU\'VE LOST THE MATHS!'; // then display this 'snarky' message
+      return; // and return the function
+    }
+    result = divide(firstOperand, secondOperand); // result is set to the result of the divide function
   }
-  screen.value = `${firstOperand} ${operator} ${secondOperand} = ${result}`;
-  input = '';
-  firstOperand = null;
-  secondOperand = null;
-  operator = null;
+  screen.value = `${firstOperand} ${operator} ${secondOperand} = ${result}`; // display the result
+  input = ''; // input is set to empty
+  firstOperand = result; // firstOperand is set to result
+  secondOperand = null; // secondOperand is set to empty
+  operator = null; // operator is set to empty
 });
 
-document.getElementById('clear').addEventListener('click', () => {
-  input = '';
-  operator = null;
-  firstOperand = null;
+// button with listener for clear
+
+document.getElementById('clear').addEventListener('click', () => { // when clear button is clicked
+  input = ''; // all variables are set to empty
+  operator = 
+  firstOperand = null;  
   secondOperand = null;
+  result = null;
   screen.value = '';
-});
+})
+
+// BASE FUNCTIONS
 
 const roundTo7 = function(num) {
   return Math.round(num * 1e7) / 1e7;
@@ -107,7 +126,7 @@ module.exports = {
 // - Functions all work standalone in jest. ✅
 // - Create basic css and html structure. ✅
 // - when 1, plus +, then 2, then = are pressed, it completes the calculation and shows it on the screen (expected result 3) ✅
-// when 5, plus -, then 2, then = are pressed, it completes the calculation and shows it on the screen (expected result 3)
+// when 5, plus -, then 2, then = are pressed, it completes the calculation and shows it on the screen (expected result 3) ✅
 
 
 //   Your calculator is going to contain functions for all of the basic math operators you typically find on calculators, so start by creating functions for the following items and testing them in your browser’s console:
