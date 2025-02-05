@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid red; /* For visibility */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    text-align: center;
+    background-color: #FFFAEC;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex: 0 1 100%;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #578E7E;
+    text-align: left;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+}
+
+.screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    background-color: #ffffff;
+}
+
+/* 
+
+make a flex box container for the entire calculator
+make a flex box container for the display
+
+
+COLOR PALETTE:
+
+#FFFAEC
+#F5ECD5
+#578E7E
+#3D3D3D
+rgb(255, 250, 236)
+rgb(245, 236, 213)
+rgb(87, 142, 126)
+rgb(61, 61, 61)
+
+*/
