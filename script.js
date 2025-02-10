@@ -1,125 +1,140 @@
-// screen is the text box containing the calculation
-
+// Get the screen (input display)
 const screen = document.getElementById('screen');
 
-// Variables (inputs) are declared and set to null because they are empty
-
+// Variables
 let input = '';
 let firstOperand = null;
 let secondOperand = null;
 let operator = null;
 let result = null;
+let operatorFilter = false;
 
-// Update the screen (text box containing the calculation) with the inputs
-// updateScreen is a function that updates the screen with the inputs
-
+// Function to update the screen display
 const updateScreen = function() {
-  screen.value = `${firstOperand !== null ? firstOperand : ''} ${operator !== null ? operator : ''} ${input}`;
+    screen.value = `${firstOperand !== null ? firstOperand : ''} ${operator !== null ? operator : ''} ${input}`;
 };
 
-// button with listener for digits 0-9
-// when digit is clicked, it is added to the input and the screen is updated
-
+// Digit button event listener
 document.querySelectorAll('.digit').forEach(button => {
-  button.addEventListener('click', () => {
-    input += button.textContent;
-    updateScreen();
-  });
+    button.addEventListener('click', () => {
+        input += button.textContent;
+        operatorFilter = false;
+        updateScreen();
+    });
 });
 
-// button with listener for different operators (+, -, x, /)
+// Decimal point listener
+document.getElementById('dot').addEventListener('click', () => {
+    if (!input.includes('.')) {
+        input += '.';
+        operatorFilter = false;
+        updateScreen();
+    }
+});
 
-
+// Operator button listener
 document.querySelectorAll('.operator').forEach(button => {
-  button.addEventListener('click', () => {
-    if (input === '' && result !== null) { // if input is empty and result is not empty
-      firstOperand = result; // then firstOperand is set to result
-    } else if (input === '') { // if input is empty
-      return;  // then return the function
-    } else if (firstOperand === null) { // if firstOperand is empty
-      firstOperand = parseFloat(input); // then firstOperand is set to the input
-    } else if (operator) { // if operator is not empty
-      secondOperand = parseFloat(input); // then secondOperand is set to the input
-      if (operator === '+') { // if operator is +
-        firstOperand = add(firstOperand, secondOperand); // then firstOperand is set to the result of the add function
-      } else if (operator === '-') { // if operator is -
-        firstOperand = subtract(firstOperand, secondOperand); // then firstOperand is set to the result of the subtract function
-      } else if (operator === 'x') { // if operator is x
-        firstOperand = multiply(firstOperand, secondOperand); // then firstOperand is set to the result of the multiply function
-      } else if (operator === '/') { // if operator is /
-        firstOperand = divide(firstOperand, secondOperand); // then firstOperand is set to result
-      }
-    }
-    operator = button.textContent; // operator is set to the button text content
-    input = ''; // input is set to empty
-    updateScreen(); // run the updateScreen function
-  });
+    button.addEventListener('click', () => {
+        handleOperator(button.textContent);
+    });
 });
 
-// button with listener for equals 
-
-document.getElementById('equals').addEventListener('click', () => { // when equals button is clicked
-  if (input === '' || firstOperand === null || !operator) return; // if input is empty or firstOperand is empty or operator is empty, then return the function
-  secondOperand = parseFloat(input); // secondOperand is set to the input
-  if (operator === '+') { // if operator is +
-    result = add(firstOperand, secondOperand); // result is set to the result of the add function
-  } else if (operator === '-') { // if operator is -
-    result = subtract(firstOperand, secondOperand); // result is set to the result of the subtract function
-  } else if (operator === 'x') { // if operator is x
-    result = multiply(firstOperand, secondOperand); //  result is set to the result of the multiply function
-  } else if (operator === '/') { // if operator is / and
-    if (secondOperand === 0) { // if secondOperand is 0
-      screen.value = 'PETER, YOU\'VE LOST THE MATHS!'; // then display this 'snarky' message
-      return; // and return the function
+// Function to handle operator logic
+const handleOperator = (op) => {
+    if (operatorFilter) {
+        operator = op; // Change the operator if the last input was an operator
+        updateScreen();
+        return;
     }
-    result = divide(firstOperand, secondOperand); // result is set to the result of the divide function
-  }
-  screen.value = `${firstOperand} ${operator} ${secondOperand} = ${result}`; // display the result
-  input = ''; // input is set to empty
-  firstOperand = result; // firstOperand is set to result
-  secondOperand = null; // secondOperand is set to empty
-  operator = null; // operator is set to empty
+    
+    if (input === '' && result !== null) {
+        firstOperand = result;
+    } else if (input === '') {
+        return;
+    } else if (firstOperand === null) {
+        firstOperand = parseFloat(input);
+    } else if (operator) {
+        secondOperand = parseFloat(input);
+        firstOperand = calculate(firstOperand, secondOperand, operator);
+    }
+
+    operator = op;
+    input = '';
+    operatorFilter = true;
+    updateScreen();
+};
+
+// Equals button listener
+document.getElementById('equals').addEventListener('click', () => {
+    if (input === '' || firstOperand === null || !operator) return;
+    secondOperand = parseFloat(input);
+    
+    if (operator === '/' && secondOperand === 0) {
+        screen.value = "PETER, YOU'VE LOST THE MATHS!";
+        return;
+    }
+    
+    result = calculate(firstOperand, secondOperand, operator);
+    screen.value = `${firstOperand} ${operator} ${secondOperand} = ${result}`;
+    
+    input = '';
+    firstOperand = result;
+    secondOperand = null;
+    operator = null;
+    operatorFilter = false;
 });
 
-// button with listener for clear
+// Clear button listener
+document.getElementById('clear').addEventListener('click', () => {
+    input = '';
+    operator = null;
+    firstOperand = null;
+    secondOperand = null;
+    result = null;
+    operatorFilter = false;
+    screen.value = '';
+});
 
-document.getElementById('clear').addEventListener('click', () => { // when clear button is clicked
-  input = ''; // all variables are set to empty
-  operator = 
-  firstOperand = null;  
-  secondOperand = null;
-  result = null;
-  screen.value = '';
-})
+// Backspace button listener
+document.getElementById('backspace').addEventListener('click', () => {
+    input = input.slice(0, -1);
+    updateScreen();
+});
 
-// BASE FUNCTIONS
-
-const roundTo7 = function(num) {
-  return Math.round(num * 1e7) / 1e7;
+// Function to perform calculations
+const calculate = (a, b, op) => {
+    if (op === '+') return roundTo7(a + b);
+    if (op === '-') return roundTo7(a - b);
+    if (op === 'x') return roundTo7(a * b);
+    if (op === '/') return roundTo7(a / b);
 };
 
-const add = function(a, b) {
-  return roundTo7(a + b);
-};
+// Rounds numbers to 7 decimal places
+const roundTo7 = (num) => Math.round(num * 1e7) / 1e7;
 
-const subtract = function(a, b) {
-  return roundTo7(a - b);
-};
+// Keyboard event listener
+document.addEventListener('keydown', (event) => {
+    const key = event.key;
 
-const multiply = function(a, b) {
-  return roundTo7(a * b);
-};
+    if (key >= '0' && key <= '9') {
+        input += key;
+        operatorFilter = false;
+    } else if (key === '.' && !input.includes('.')) {
+        input += '.';
+        operatorFilter = false;
+    } else if (['+', '-', '*', '/'].includes(key)) {
+        handleOperator(key === '*' ? 'x' : key);
+    } else if (key === 'Enter' || key === '=') {
+        document.getElementById('equals').click();
+    } else if (key === 'Backspace') {
+        input = input.slice(0, -1);
+    } else if (key === 'Escape') {
+        document.getElementById('clear').click();
+    }
 
-const divide = function(a, b) {
-  return roundTo7(a / b);
-};
+    updateScreen();
+});
 
-module.exports = {
-  add,
-  subtract,
-  multiply,
-  divide
-};
 
 // MY NOTES
 
@@ -165,3 +180,5 @@ module.exports = {
 //     Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though, like: 12.3.56.5. Disable the . button if there’s already a decimal separator in the display.
 //     Add a “backspace” button, so the user can undo their last input if they click the wrong number.
 //     Add keyboard support!
+
+
