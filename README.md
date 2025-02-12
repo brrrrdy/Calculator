@@ -38,3 +38,23 @@ A calculator operation will consist of a number, an operator, and another number
     Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though, like: 12.3.56.5. Disable the . button if there’s already a decimal separator in the display.
     Add a “backspace” button, so the user can undo their last input if they click the wrong number.
     Add keyboard support!
+
+
+MY NOTES
+
+- Functions all work standalone in jest. ✅
+- Create basic css and html structure. ✅
+- when 1, plus +, then 2, then = are pressed, it completes the calculation and shows it on the screen (expected result 3) ✅
+- when 5, plus -, then 2, then = are pressed, it completes the calculation and shows it on the screen (expected result 3) ✅
+
+BUGS
+
+- Link to github project wrong ❌
+- when more than 18 characters are input, the subsequent characters disappear off the screen. Solution - reduce the font size when 18 character limit is reached? ❌
+- When entering characters and operator is selected, operands shift to the left. ❌
+
+FEATURES TO BE IMPLEMENTED
+
+- Dark Mode
+- Factorial Feature
+- Overlay linking to other projects
