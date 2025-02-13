@@ -51,9 +51,9 @@ MY NOTES
 
 BUGS
 
-- Link to github project wrong ❌
-- when more than 18 characters are input, the subsequent characters disappear off the screen. Solution - reduce the font size when 18 character limit is reached? ❌
-- When entering characters and operator is selected, operands shift to the left. ❌
+- Link to github project wrong ✅
+- when more than 18 characters are input, the subsequent characters disappear off the screen. Solution - reduce the font size when 18 character limit is reached? ✅
+- When entering characters and operator is selected, operands shift to the left. ✅
 
 FEATURES TO BE IMPLEMENTED
 
