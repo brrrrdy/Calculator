@@ -1,6 +1,16 @@
-# Calculator project for the Odin-Project.
+# Calculator project for the Odin-Project
 
 ## https://brrrrdy.github.io/Calculator/
+
+### Sprint 1
+
+- Develop functionality.
+- Implement UI.
+
+### Sprint 2
+
+- Refactor code once I've learned more about JavaScript (React?)
+- Integrate design with other projects
 
 ## Here are some use cases (expectations about your project):
 
