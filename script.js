@@ -1,5 +1,6 @@
 // Get the screen (input display)
-const screen = document.getElementById('screen');
+const screenBottom = document.getElementById('screen-bottom');
+const screenTop = document.getElementById('screen-top');
 
 // Variables
 let input = '';
@@ -11,7 +12,8 @@ let operatorFilter = false;
 
 // Function to update the screen display
 const updateScreen = function() {
-    screen.value = `${firstOperand !== null ? firstOperand : ''} ${operator !== null ? operator : ''} ${input}`;
+    screenBottom.value = `${firstOperand !== null ? firstOperand : ''}${operator !== null ? ' ' + operator + ' ' : ''}${input}`;
+    screenBottom.scrollLeft = screenBottom.scrollWidth; 
 };
 
 // Digit button event listener
@@ -67,21 +69,27 @@ const handleOperator = (op) => {
 // Equals button listener
 document.getElementById('equals').addEventListener('click', () => {
     if (input === '' || firstOperand === null || !operator) return;
+    
     secondOperand = parseFloat(input);
     
     if (operator === '/' && secondOperand === 0) {
-        screen.value = "PETER, YOU'VE LOST THE MATHS!";
+        screenTop.value = "";
+        screenBottom.value = "PETER, YOU'VE LOST THE MATHS!";
         return;
     }
     
     result = calculate(firstOperand, secondOperand, operator);
-    screen.value = `${firstOperand} ${operator} ${secondOperand} = ${result}`;
+    
+    screenTop.value = `${firstOperand} ${operator} ${secondOperand} =`;
+
+    screenBottom.value = result;
     
     input = '';
     firstOperand = result;
     secondOperand = null;
     operator = null;
     operatorFilter = false;
+    updateScreen();
 });
 
 // Clear button listener
@@ -92,7 +100,9 @@ document.getElementById('clear').addEventListener('click', () => {
     secondOperand = null;
     result = null;
     operatorFilter = false;
-    screen.value = '';
+
+    screenTop.value = '';
+    screenBottom.value = '0';
 });
 
 // Backspace button listener
