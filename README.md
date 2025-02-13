@@ -2,12 +2,12 @@
 
 ## https://brrrrdy.github.io/Calculator/
 
-### Sprint 1
+### Sprint 1 ✅
 
-- Develop functionality.
+- Develop functionality. 
 - Implement UI.
 
-### Sprint 2
+### Sprint 2 ⌚
 
 - Refactor code once I've learned more about JavaScript (React?)
 - Integrate design with other projects
