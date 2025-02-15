@@ -69,8 +69,8 @@ h1:hover {
 }
 
 #screen-bottom, #screen-top {
-    display: flex; 
-    justify-content: flex-end; 
+    display: block;
+    justify-content: flex-start; 
     align-items: center;
     width: 100%;
     color: rgb(255, 255, 255);
@@ -81,11 +81,11 @@ h1:hover {
     direction: ltr;
     overflow-x: auto;
     white-space: nowrap;
-    min-width: calc(100% - 20px); 
     padding-inline-end: 20px; 
-    border-right: 20px solid transparent; 
-    line-height: normal;
+    min-width: calc(100% + 20px); 
+    text-indent: 2px; 
 }
+
 
 #screen-bottom {
     height: 100px;
@@ -95,11 +95,6 @@ h1:hover {
     border-bottom-right-radius: 20px;
 }
 
-#screen-bottom::after {
-    content: "\00a0";
-    padding-inline-end: 15px;
-    display: inline-block;
-}
 
 #screen-top {
     height: 50px;
@@ -109,10 +104,10 @@ h1:hover {
     border-top-left-radius: 20px;
 }
 
-#screen-top::after {
-    content: "\00a0";
-    padding-inline-end: 15px;
+#screen-bottom::after, #screen-top::after {
+    content: "\00a0"; 
     display: inline-block;
+    width: 20px; 
 }
 
 .buttons-container {
