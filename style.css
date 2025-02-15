@@ -48,6 +48,10 @@ h1:hover {
     font-weight: 950; 
 }
 
+.screen {
+    border-radius: 0;
+}
+
 .screen-container {
     display: flex;
     flex-direction: column;
