@@ -43,14 +43,14 @@ h1 {
     font-style: italic;
     letter-spacing: 0.2cap;
     font-weight: 900;
-    transition: font-size 0.4s ease, font-weight 0.4s ease; 
+    /* transition: font-size 0.4s ease, font-weight 0.4s ease;  */
 }
 
-h1:hover {
+/* h1:hover {
     color: #5700f8;
     font-size: 2.2rem; 
     font-weight: 950; 
-}
+} */
 
 .screen-container {
     display: flex;
@@ -97,8 +97,6 @@ h1:hover {
     min-width: 102%; 
     text-align: right;
     font-size: 3.5rem;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
 }
 
 #screen-top {
@@ -106,15 +104,13 @@ h1:hover {
     min-width: 102%; 
     text-align: right;
     font-size: 1rem;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
 }
 
-#screen-bottom::after, #screen-top::after {
+/* #screen-bottom::after, #screen-top::after {
     content: "\00a0\00a0"; 
     display: inline-block;
     width: 30px; 
-}
+} */
 
 .buttons-container {
     display: grid;
