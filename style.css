@@ -82,9 +82,7 @@ h1:hover {
     direction: ltr;
     overflow-x: auto;
     white-space: nowrap;
-    margin: 0; 
-    padding: 0;
-    padding-right: 15px;
+    padding-right: 20px;
     border: 0;
     line-height: normal;
 }
@@ -98,6 +96,12 @@ h1:hover {
     border-bottom-right-radius: 20px;
 }
 
+#screen-bottom::after {
+    content: "\00a0";
+    padding-right: 15px;
+    display: inline-block;
+}
+
 #screen-top {
     height: 50px;
     text-align: right;
@@ -106,6 +110,13 @@ h1:hover {
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
 }
+
+#screen-top::after {
+    content: "\00a0";
+    padding-right: 15px;
+    display: inline-block;
+}
+
 
 .buttons-container {
     display: grid;
