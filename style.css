@@ -82,10 +82,11 @@ h1:hover {
     border: none;
     direction: ltr;
     white-space: nowrap;
-    overflow-x: scroll; 
-    scroll-behavior: smooth; 
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch;
     padding-right: 60px; 
 }
+
 
 #screen-bottom {
     height: 100px;
@@ -108,8 +109,7 @@ h1:hover {
 #screen-bottom::after, #screen-top::after {
     content: "\00a0\00a0"; 
     display: inline-block;
-    width: 25px; 
-    -webkit-overflow-scrolling: touch;
+    width: 30px; 
 }
 
 .buttons-container {
