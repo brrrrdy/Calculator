@@ -69,8 +69,6 @@ h1 {
     padding: 0;
     line-height: normal;
     box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
 }
 
@@ -84,7 +82,7 @@ h1 {
     font-family: 'Orbitron', sans-serif;
     font-style: italic;
     border: none;
-    direction: ltr;
+    /* direction: ltr; */
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
 }
