@@ -52,12 +52,12 @@ h1 {
     font-weight: 950; 
 } */
 
-.screen-container {
+/* .screen-container {
     display: flex;
     flex-direction: column;
     gap: 0; 
     width: 100%;
-}
+} */
 
 .screen {
     display: block;
@@ -94,14 +94,12 @@ h1 {
 
 #screen-bottom {
     height: 100px;
-    min-width: 102%; 
     text-align: right;
     font-size: 3.5rem;
 }
 
 #screen-top {
     height: 50px;
-    min-width: 102%; 
     text-align: right;
     font-size: 1rem;
 }
