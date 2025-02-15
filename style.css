@@ -47,6 +47,11 @@ h1:hover {
     font-size: 2.2rem; 
     font-weight: 950; 
 }
+.screen-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
 
 .screen {
     display: block;
@@ -62,13 +67,6 @@ h1:hover {
     -moz-appearance: none;
     appearance: none;
 }
-
-.screen-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-
 
 #screen-bottom, #screen-top {
     display: block;
@@ -93,8 +91,8 @@ h1:hover {
     text-align: right;
     font-size: 3.5rem;
     border: 0;
-    /* border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px; */
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 #screen-top {
@@ -102,8 +100,8 @@ h1:hover {
     text-align: right;
     font-size: 1rem;
     border: 0;
-    /* border-top-right-radius: 20px;
-    border-top-left-radius: 20px; */
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
 }
 
 .buttons-container {
