@@ -88,10 +88,6 @@ h1:hover {
 }
 
 
-#screen-bottom::before, #screen-top::before {
-    content: "\00a0";
-}
-
 #screen-bottom {
     height: 100px;
     min-width: 102%; 
