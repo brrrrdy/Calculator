@@ -86,7 +86,6 @@ h1 {
     border: none;
     direction: ltr;
     white-space: nowrap;
-    overflow-x: auto; 
     -webkit-overflow-scrolling: touch;
 }
 
