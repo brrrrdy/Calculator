@@ -1,12 +1,8 @@
-/* * {
-    border: 1px solid red;
-} */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border: 1px solid red;
 }
 
 body {
@@ -71,6 +67,7 @@ h1 {
     box-sizing: border-box;
     appearance: none;
 }
+
 
 #screen-bottom, #screen-top {
     display: block;
