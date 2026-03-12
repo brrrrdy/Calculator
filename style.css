@@ -7,12 +7,14 @@
 
 body {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
   width: 100vw;
   text-align: center;
   padding-top: 20px;
+  padding-bottom: 100px;
   background: linear-gradient(180deg, #f89d48, #eb733b, #d16527, #cf5707);
 }
 
@@ -193,16 +195,12 @@ button {
   color: #ffffff;
 }
 
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.unified-footer {
+  color: #ffffff;
+  padding: 1.5rem 0;
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 50px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #ffb200;
   font-family:
     system-ui,
     -apple-system,
@@ -215,24 +213,141 @@ button {
     "Open Sans",
     "Helvetica Neue",
     sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.2rem;
 }
 
-.footer a {
+.unified-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.unified-footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.unified-footer-left p {
+  margin: 0;
+  opacity: 0.8;
+  font-size: 0.85rem;
+}
+
+.unified-footer-right-section {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.unified-footer-social h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.unified-social-links {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.unified-social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.unified-social-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.unified-social-links svg {
+  width: 16px;
+  height: 16px;
+  fill: #ffffff;
+  opacity: 0.9;
+}
+
+.unified-footer-repo a {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   color: #ffb200;
   text-decoration: none;
-  font-weight: bold;
-  margin-left: 5px;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+  font-size: 0.85rem;
 }
 
-.footer a:hover {
+.unified-footer-repo a:hover {
+  opacity: 1;
   text-decoration: underline;
+}
+
+.unified-footer-repo svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  body {
+    padding-bottom: 0;
+    padding-top: 10px;
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+  }
+
+  button {
+    font-size: 1.3rem;
+  }
+
+  .unified-footer {
+    position: relative;
+    margin-top: auto;
+  }
+
+  .unified-footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .unified-footer-right-section {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .unified-social-links {
+    justify-content: center;
+  }
+
+  .github-fab {
+    bottom: 20px;
+  }
 }
 
 .github-fab {
   position: fixed;
-  bottom: 70px;
+  bottom: 100px;
   right: 20px;
   width: 56px;
   height: 56px;
