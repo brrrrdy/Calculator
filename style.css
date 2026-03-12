@@ -247,6 +247,17 @@ button {
     transform 0.2s ease,
     background-color 0.2s ease;
   z-index: 1000;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.github-fab svg {
+  display: block;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
 }
 
 .github-fab:hover {
