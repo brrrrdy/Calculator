@@ -1,72 +1,34 @@
-# Calculator project for the Odin-Project
+# Calculator
 
-## https://brrrrdy.github.io/Calculator/
+https://brrrrdy.github.io/Calculator
 
-### Sprint 1 ✅
+![Calculator screenshot](https://tomalvarez.xyz/assets/scrn_calculator-CLjjlMTM.webp)
 
-- Develop functionality. 
-- Implement UI.
+## REQUIREMENTS
 
-### Sprint 2 ⌚
+- Functions for add, subtract, multiply, and divide
+- Display updates correctly on digit and operator input
+- Chained calculations — result of one operation becomes the first operand of the next
+- Decimal input support
+- Backspace button
+- Keyboard support
+- Graceful divide-by-zero handling
+- Consecutive operator presses handled correctly
+- Long decimal results rounded to prevent display overflow
+- Clear button resets all state
 
-- Refactor code once I've learned more about JavaScript (React?)
-- Integrate design with other projects
+## ABOUT
 
-## Here are some use cases (expectations about your project):
+A browser-based calculator built as the final project of The Odin Project Foundations curriculum, combining everything learned so far: DOM manipulation, event handling, andapplication logic in vanilla JavaScript.
 
-Your calculator is going to contain functions for all of the basic math operators you typically find on calculators, so start by creating functions for the following items and testing them in your browser’s console:
-- add
-- subtract
-- multiply
-- divide
+The core challenge was managing calculator state correctly — storing operands and operators, chaining calculations so each result feeds into the next operation, and handling edge cases like consecutive operator presses, divide-by-zero, and overly long decimals.
 
-A calculator operation will consist of a number, an operator, and another number. For example, 3 + 5. Create three variables, one for each part of the operation. You’ll use these variables to update your display later.
+All core functions were tested independently using Jest before being wired to the UI.
 
-1. Create a new function operate that takes an operator and two numbers and then calls one of the above functions on the numbers.
-    Create a basic HTML calculator with buttons for each digit and operator (including =).
-        Don’t worry about making them functional just yet.
-        There should also be a display for the calculator. Go ahead and fill it with some dummy numbers so it looks correct.
-        Add a “clear” button.
-2. Create the functions that populate the display when you click the digit buttons. You should store the content of the display (the number) in a variable for use in the next step.
-    Make the calculator work! You’ll need to store the first and second numbers input by the user and then operate() on them when the user presses the = button, according to the operator that was selected between the numbers.
-        You should already have the code that can populate the display, so once operate has been called, update the display with the result of the operation.
-        This is the hardest part of the project. You need to figure out how to store all the values and call the operate function with them. Don’t feel bad if it takes you a while to figure out the logic.
-3. Gotchas: watch out for and fix these bugs if they show up in your code:
-        
-    Your calculator should not evaluate more than a single pair of numbers at a time. Example: you enter a number (12), followed by an operator button (+), a second number button (7), and a second operator button (-). Your calculator should then do the following: first, evaluate the initial pair of numbers (12 + 7), then display the result of that calculation (19). Finally, use that result (19) as the first number in a new calculation, along with the next operator (-). An example of the behavior we’re looking for can be seen in this student’s calculator live preview.
-    
-    You should round answers with long decimals so that they don’t overflow the display.
-    
-    Pressing = before entering all of the numbers or an operator could cause problems!
-    
-    Pressing “clear” should wipe out any existing data. Make sure the user is really starting fresh after pressing “clear”.
-    
-    Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!
-    
-    Make sure that your calculator only runs an operation when supplied with two numbers and an operator by the user. Example: you enter a number (2), followed by an operator button (+). You press the operator button (+) a second consecutive time. Your calculator should not evaluate this as (2 + 2) and should not display the result (4). If consecutive operator buttons are pressed, your calculator should not run any evaluations, it should only take the last operator entered to be used for the next operation.
+A dynamic font-size solution handles display overflow when input exceeds a certain length, keeping the interface clean regardless of the numbers involved.
 
-4. Extra credit
+## BUILT WITH
 
-    Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though, like: 12.3.56.5. Disable the . button if there’s already a decimal separator in the display.
-    Add a “backspace” button, so the user can undo their last input if they click the wrong number.
-    Add keyboard support!
-
-
-MY NOTES
-
-- Functions all work standalone in jest. ✅
-- Create basic css and html structure. ✅
-- when 1, plus +, then 2, then = are pressed, it completes the calculation and shows it on the screen (expected result 3) ✅
-- when 5, plus -, then 2, then = are pressed, it completes the calculation and shows it on the screen (expected result 3) ✅
-
-BUGS
-
-- Link to github project wrong ✅
-- when more than 18 characters are input, the subsequent characters disappear off the screen. Solution - reduce the font size when 18 character limit is reached? ✅
-- When entering characters and operator is selected, operands shift to the left. ✅
-
-FEATURES TO BE IMPLEMENTED
-
-- Dark Mode
-- Factorial Feature
-- Overlay linking to other projects
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
